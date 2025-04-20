@@ -1,0 +1,117 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI.headerInfo: {
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    title: {
+        type: #STANDARD,
+        label: 'Travel Details',
+        value: 'TravelId'
+    },
+    description.value: 'Name'
+}
+annotate view ZC_TRAVEL_RCF1
+    with 
+{
+
+
+    @UI.facet: [
+                    { 
+                      purpose: #HEADER,
+                      type: #DATAPOINT_REFERENCE,
+                      position: 10,
+                      targetQualifier: 'display_fee' 
+                     },
+                     
+                    { 
+                      purpose: #HEADER,
+                      type: #DATAPOINT_REFERENCE,
+                      position: 20,
+                      targetQualifier: 'display_status' 
+                     }
+                     
+               ]
+
+    @UI.lineItem: [{ position: 10 }]
+    @UI.selectionField: [{ position: 10 }]
+    @Search: {
+        defaultSearchElement: true,
+        ranking: #HIGH,
+        fuzzinessThreshold: 0.7
+    }
+    TravelId;
+    
+    @UI.lineItem: [{ position: 20 }]
+    @UI.selectionField: [{ position: 20 }]
+    @Search: {
+        defaultSearchElement: true,
+        ranking: #HIGH,
+        fuzzinessThreshold: 0.7
+    }
+    AgencyId;
+    
+    @UI.lineItem: [{ position: 25 }]
+    @UI.selectionField: [{ position: 30 }]
+    @Search: {
+        defaultSearchElement: true,
+        ranking: #MEDIUM,
+        fuzzinessThreshold: 0.7
+    }
+    @Consumption.valueHelpDefinition: [{ entity.name: '/dmo/i_agency',
+                                         entity.element: 'Name' }]
+    Name;
+    
+    @UI.lineItem: [{ position: 30 }]
+    @UI.selectionField: [{ position: 40 }]
+    CustomerId;
+    
+    @UI.lineItem: [{ position: 35 }]
+    @UI.selectionField: [{ position: 50 }]
+    @Search: {
+        defaultSearchElement: true,
+        ranking: #MEDIUM,
+        fuzzinessThreshold: 0.7
+    }
+    @Consumption.valueHelpDefinition: [{ entity.name: '/DMO/I_Customer',
+                                         entity.element: 'FirstName' }]
+    FirstName;
+    
+    @UI.lineItem: [{ position: 40 }]
+    BeginDate;
+    
+    @UI.lineItem: [{ position: 50 }]
+    EndDate;
+    
+    @UI.lineItem: [{ position: 60 }]
+    BookingFee;
+    
+    @UI.lineItem: [{ position: 70 }]
+    @UI.dataPoint: { qualifier: 'display_fee', title: 'Total Booking Price' }
+    TotalPrice;
+    
+    @UI.lineItem: [{ position: 80 }]
+    CurrencyCode;
+    
+    @UI.lineItem: [{ position: 90 }]
+    Description;
+    
+    @UI.lineItem: [{ position: 110 }]
+    @UI.selectionField: [{ position: 60 }]
+    @Consumption.valueHelpDefinition: [{ entity.name: '/DMO/I_Overall_Status_VH',
+                                         entity.element: 'OverallStatus' }]
+    @UI.dataPoint: { qualifier: 'display_status', title: 'Overall Status' }
+    OverallStatus;
+    
+    @UI.lineItem: [{ position: 120 }]
+    CreatedBy;
+    
+    @UI.lineItem: [{ position: 130 }]
+    CreatedAt;
+    
+    @UI.lineItem: [{ position: 140 }]
+    LastChangedBy;
+    
+    @UI.lineItem: [{ position: 150 }]
+    LastChangedAt;
+    
+}
