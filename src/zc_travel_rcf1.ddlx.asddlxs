@@ -14,7 +14,7 @@ annotate view ZC_TRAVEL_RCF1
     with 
 {
 
-
+    //teste
     @UI.facet: [
                     { 
                       purpose: #HEADER,
