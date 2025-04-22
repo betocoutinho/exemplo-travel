@@ -16,19 +16,55 @@ annotate view ZC_TRAVEL_RCF1
 
     //teste
     @UI.facet: [
+                    //HEADER
                     { 
                       purpose: #HEADER,
                       type: #DATAPOINT_REFERENCE,
                       position: 10,
                       targetQualifier: 'display_fee' 
-                     },
+                    },
                      
                     { 
                       purpose: #HEADER,
                       type: #DATAPOINT_REFERENCE,
                       position: 20,
                       targetQualifier: 'display_status' 
-                     }
+                    },
+                    
+                    //BODY
+                    { 
+                      purpose: #STANDARD,
+                      type: #COLLECTION,
+                      position: 10,
+                      id: 'cl-1',
+                      label: 'Header Data'
+                    },
+                    
+                    { 
+                      purpose: #STANDARD,
+                      type: #IDENTIFICATION_REFERENCE,
+                      position: 10,
+                      label: 'Main Data',
+                      parentId: 'cl-1'
+                    },
+                    { 
+                      purpose: #STANDARD,
+                      type: #FIELDGROUP_REFERENCE,
+                      position: 20,
+                      label: 'Customer',
+                      parentId: 'cl-1',
+                      targetQualifier: 'FG1'
+                    },
+                    { 
+                      purpose: #STANDARD,
+                      type: #FIELDGROUP_REFERENCE,
+                      position: 30,
+                      label: 'Others Data',
+                      parentId: 'cl-1',
+                      targetQualifier: 'FG2'
+                    }
+                    
+                     
                      
                ]
 
@@ -39,6 +75,7 @@ annotate view ZC_TRAVEL_RCF1
         ranking: #HIGH,
         fuzzinessThreshold: 0.7
     }
+    @UI.identification: [{ position: 10 }]
     TravelId;
     
     @UI.lineItem: [{ position: 20 }]
@@ -48,6 +85,7 @@ annotate view ZC_TRAVEL_RCF1
         ranking: #HIGH,
         fuzzinessThreshold: 0.7
     }
+    @UI.identification: [{ position: 20 }]
     AgencyId;
     
     @UI.lineItem: [{ position: 25 }]
@@ -59,10 +97,12 @@ annotate view ZC_TRAVEL_RCF1
     }
     @Consumption.valueHelpDefinition: [{ entity.name: '/dmo/i_agency',
                                          entity.element: 'Name' }]
+    @UI.identification: [{ position: 30 }]
     Name;
     
     @UI.lineItem: [{ position: 30 }]
     @UI.selectionField: [{ position: 40 }]
+    @UI.fieldGroup: [{ position: 10, qualifier: 'FG1' }]
     CustomerId;
     
     @UI.lineItem: [{ position: 35 }]
@@ -74,6 +114,7 @@ annotate view ZC_TRAVEL_RCF1
     }
     @Consumption.valueHelpDefinition: [{ entity.name: '/DMO/I_Customer',
                                          entity.element: 'FirstName' }]
+    @UI.fieldGroup: [{ position: 20, qualifier: 'FG1' }]
     FirstName;
     
     @UI.lineItem: [{ position: 40 }]
@@ -103,15 +144,19 @@ annotate view ZC_TRAVEL_RCF1
     OverallStatus;
     
     @UI.lineItem: [{ position: 120 }]
+    @UI.fieldGroup: [{ position: 10, qualifier: 'FG2' }]
     CreatedBy;
     
     @UI.lineItem: [{ position: 130 }]
+    @UI.fieldGroup: [{ position: 20, qualifier: 'FG2' }]
     CreatedAt;
     
     @UI.lineItem: [{ position: 140 }]
+    @UI.fieldGroup: [{ position: 30, qualifier: 'FG2' }]
     LastChangedBy;
     
     @UI.lineItem: [{ position: 150 }]
+    @UI.fieldGroup: [{ position: 40, qualifier: 'FG2' }]
     LastChangedAt;
     
 }

@@ -6,6 +6,9 @@ define root view entity ZC_TRAVEL_RCF1
   provider contract transactional_query
   as projection on ZI_TRAVEL_RCF1
 {
+  @ObjectModel.text: {
+      element: [ 'Description' ]
+  }
   key TravelId,
       AgencyId,
       _agency.Name,
@@ -19,7 +22,9 @@ define root view entity ZC_TRAVEL_RCF1
       TotalPrice,
       CurrencyCode,
       Description,
+      @ObjectModel.text.element: [ 'OverallStatusText' ]
       OverallStatus,
+      _overallStatus._Text.Text as OverallStatusText : localized,
       CreatedBy,
       CreatedAt,
       LastChangedBy,
