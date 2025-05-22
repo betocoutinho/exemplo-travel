@@ -62,11 +62,16 @@ annotate view ZC_TRAVEL_RCF1
                       label: 'Others Data',
                       parentId: 'cl-1',
                       targetQualifier: 'FG2'
+                    },
+                    { 
+                      purpose: #STANDARD,
+                      type: #LINEITEM_REFERENCE,
+                      position: 20,
+                      label: 'Bookings',
+                      targetElement: '_booking'
                     }
                     
-                     
-                     
-               ]
+                    ]
 
     @UI.lineItem: [{ position: 10 }]
     @UI.selectionField: [{ position: 10 }]
@@ -97,7 +102,7 @@ annotate view ZC_TRAVEL_RCF1
     }
     @Consumption.valueHelpDefinition: [{ entity.name: '/dmo/i_agency',
                                          entity.element: 'Name' }]
-    @UI.identification: [{ position: 30 }]
+    //@UI.identification: [{ position: 30 }]
     Name;
     
     @UI.lineItem: [{ position: 30 }]
@@ -128,9 +133,11 @@ annotate view ZC_TRAVEL_RCF1
     
     @UI.lineItem: [{ position: 70 }]
     @UI.dataPoint: { qualifier: 'display_fee', title: 'Total Booking Price' }
+    @UI.fieldGroup: [{ position: 11, qualifier: 'FG2' }]
     TotalPrice;
     
     @UI.lineItem: [{ position: 80 }]
+    @UI.fieldGroup: [{ position: 12, qualifier: 'FG2' }]
     CurrencyCode;
     
     @UI.lineItem: [{ position: 90 }]
@@ -141,6 +148,7 @@ annotate view ZC_TRAVEL_RCF1
     @Consumption.valueHelpDefinition: [{ entity.name: '/DMO/I_Overall_Status_VH',
                                          entity.element: 'OverallStatus' }]
     @UI.dataPoint: { qualifier: 'display_status', title: 'Overall Status' }
+    @UI.fieldGroup: [{ position: 30, qualifier: 'FG1' }]
     OverallStatus;
     
     @UI.lineItem: [{ position: 120 }]

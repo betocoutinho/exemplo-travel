@@ -1,0 +1,85 @@
+managed implementation in class zbp_i_travel_rcf1 unique;
+strict ( 2 );
+
+define behavior for ZI_TRAVEL_RCF1 alias Travel
+persistent table /dmo/travel_m
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
+  association _booking { create; }
+
+  mapping for /dmo/travel_m
+    {
+      AgencyId      = agency_id;
+      BeginDate     = begin_date;
+      BookingFee    = booking_fee;
+      CreatedAt     = created_at;
+      CreatedBy     = created_by;
+      CurrencyCode  = currency_code;
+      CustomerId    = customer_id;
+      Description   = description;
+      EndDate       = end_date;
+      LastChangedAt = last_changed_at;
+      LastChangedBy = last_changed_by;
+      OverallStatus = overall_status;
+      TotalPrice    = total_price;
+      TravelId      = travel_id;
+    }
+}
+
+define behavior for ZI_BOOKING_RCF1 alias Booking
+persistent table /dmo/booking_m
+lock dependent by _travel
+authorization dependent by _travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId;
+  association _travel;
+  association _bookSuppl { create; }
+
+  mapping for /dmo/booking_m
+    {
+      BookingDate   = booking_date;
+      BookingId     = booking_id;
+      BookingStatus = booking_status;
+      CarrierId     = carrier_id;
+      ConnectionId  = connection_id;
+      CurrencyCode  = currency_code;
+      CustomerId    = customer_id;
+      FlightDate    = flight_date;
+      FlightPrice   = flight_price;
+      LastChangedAt = last_changed_at;
+      TravelId      = travel_id;
+    }
+}
+
+define behavior for ZI_booksuppl_rcf1 alias BookingSuppl
+persistent table /dmo/booksuppl_m
+lock dependent by _travel
+authorization dependent by _travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId, BookingSupplementId;
+  association _travel;
+  association _booking;
+
+  mapping for /dmo/booksuppl_m
+    {
+      BookingId           = booking_id;
+      BookingSupplementId = booking_supplement_id;
+      CurrencyCode        = currency_code;
+      LastChangedAt       = last_changed_at;
+      Price               = price;
+      SupplementId        = supplement_id;
+      TravelId            = travel_id;
+    }
+}

@@ -6,12 +6,20 @@ define root view entity ZC_TRAVEL_RCF1
   provider contract transactional_query
   as projection on ZI_TRAVEL_RCF1
 {
-  @ObjectModel.text: {
-      element: [ 'Description' ]
-  }
+      @ObjectModel.text: {
+          element: [ 'Description' ]
+      }
   key TravelId,
+      @Consumption.valueHelpDefinition: [{ entity: {
+          name: '/DMO/I_Agency',
+          element: 'AgencyID'
+      } }]
       AgencyId,
       _agency.Name,
+      @Consumption.valueHelpDefinition: [{ entity: {
+          name: '/DMO/I_Customer',
+          element: 'CustomerID'
+      } }]
       CustomerId,
       _customer.FirstName,
       BeginDate,

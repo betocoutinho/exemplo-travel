@@ -1,0 +1,79 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Booking',
+    typeNamePlural: 'Bookings',
+    title: {
+        type: #STANDARD,
+        label: 'Booking Details',
+        value: 'BookingId'
+    },
+    description.value: 'CustomerId'
+}
+annotate view ZC_BOOKING_RCF1 with
+{
+
+  @UI.facet: [ {purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                position: 10,
+                label: 'Booking Data'
+                },
+                
+                    { 
+                      purpose: #STANDARD,
+                      type: #LINEITEM_REFERENCE,
+                      position: 20,
+                      label: 'Bookings Supplements',
+                      targetElement: '_bookSuppl'
+                    }
+              ]
+              
+              
+  @UI.identification: [{ position: 10 }]
+  //@UI.lineItem: [{ position: 10 }]
+  TravelId;
+
+  @UI.identification: [{ position: 20 }]
+  @UI.lineItem: [{ position: 20 }]
+  BookingId;
+
+  @UI.identification: [{ position: 30 }]
+  @UI.lineItem: [{ position: 30 }]
+  BookingDate;
+
+  @UI.identification: [{ position: 40 }]
+  @UI.lineItem: [{ position: 40 }]
+  CustomerId;
+
+  @UI.identification: [{ position: 50 }]
+  @UI.lineItem: [{ position: 50 }]
+  CarrierId;
+
+  @UI.identification: [{ position: 60 }]
+  @UI.lineItem: [{ position: 60 }]
+  ConnectionId;
+  
+  @UI.identification: [{ position: 61 }]
+  DepartureAirport;
+  
+  @UI.identification: [{ position: 62 }]
+  DestinationAirport;
+  
+
+  @UI.identification: [{ position: 80 }]
+  @UI.lineItem: [{ position: 80 }]
+  FlightDate;
+
+  @UI.identification: [{ position: 90 }]
+  @UI.lineItem: [{ position: 90 }]
+  FlightPrice;
+
+  @UI.identification: [{ position: 100 }]
+  //@UI.lineItem: [{ position: 100 }]
+  CurrencyCode;
+
+  @UI.identification: [{ position: 110 }]
+  @UI.lineItem: [{ position: 110 }]
+  BookingStatus;
+
+
+}

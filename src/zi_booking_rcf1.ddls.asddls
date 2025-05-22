@@ -28,6 +28,7 @@ define view entity ZI_BOOKING_RCF1
       /dmo/booking_m.flight_price    as FlightPrice,
       /dmo/booking_m.currency_code   as CurrencyCode,
       /dmo/booking_m.booking_status  as BookingStatus,
+      @Semantics.systemDateTime.lastChangedAt: true
       /dmo/booking_m.last_changed_at as LastChangedAt,
       _bookSuppl,
       _travel,
